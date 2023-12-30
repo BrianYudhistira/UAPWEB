@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAP</title>
+    <style>
+        table,
+        td,
+        tr,
+        th {
+            border: 1px solid black;
+            text-align: center;
+            width: 30%;
+        }
+
+        form {
+            margin-top: 5px;
+        }
+
+        h3 {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>UAP WEB</h1>
+    <p>Nama: Brian Yudhistira</p>
+    <p>Nim : 202110370311309</p>
+
+    <h3>Data</h3>
+    <table>
+        <tr>
+            <th>Kode</th>
+            <th>Nama Barang</th>
+            <th>Harga</th>
+        </tr>
+        <tr>
+            <td>001</td>
+            <td>A</td>
+            <td>10000</td>
+        </tr>
+        <tr>
+            <td>002</td>
+            <td>B</td>
+            <td>20000</td>
+        </tr>
+        <tr>
+            <td>003</td>
+            <td>C</td>
+            <td>30000</td>
+        </tr>
+    </table>
+
+    <h3>Inputan User</h3>
+
+    <form>
+        <label for="kode">Kode</label>
+        <input type="text" id="kode">
+        <label for="qty">QTY</label>
+        <input type="text" id="qty">
+        <button onclick="tambah()">Submit</button>
+    </form>
+</body>
+
+<script>
+    const data = [
+        { kode: '001', barang: 'A', harga: '10000' },
+        { kode: '002', barang: 'B', harga: '20000' },
+        { kode: '003', barang: 'C', harga: '30000' }
+    ]
+
+    function tambah() {
+        const kodeIn = document.getElementById('kode')
+        const qtyIn = parseInt(document.getElementById('qty').value)
+
+        const datafind = data.find(barang => barang.kode == kodeIn.value)
+
+        if (datafind) {
+            const total = datafind.harga * qtyIn
+            alert('total Pembayaran adalah : Rp.' + total)
+            const bayar = window.prompt('Pembayaran: ' + total + '\nMasukkan Uang Anda: ')
+            if (bayar >= total) {
+                const balik = bayar - total
+                alert('Kembalian Rp.' + balik)
+            }
+            else (
+                alert('uang anda kurang')
+            )
+        }
+        else {
+            alert('Barang tidak terdaftar')
+        }
+    }
+</script>
+
+</html>
